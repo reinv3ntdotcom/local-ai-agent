@@ -51,7 +51,7 @@ Keep your responses friendly and conversational."""
 
 checkpointer = InMemorySaver()
 
-math_agent = create_agent(
+agent = create_agent(
     model=model,
     tools=tools,
     system_prompt=system_prompt,
@@ -63,7 +63,7 @@ math_agent = create_agent(
 async def on_message(msg: cl.Message):
     final_answer = cl.Message(content="")
 
-    for message_chunk, metadata in math_agent.stream(
+    for message_chunk, metadata in agent.stream(
         {"messages": [HumanMessage(content=msg.content)]},
         {"configurable": {"thread_id": "1"}},
         stream_mode="messages",
