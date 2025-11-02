@@ -5,6 +5,7 @@
 #   "langchain-ollama==1.0.0",
 #   "langgraph==1.0.1",
 #   "loguru==0.7.3",
+#   "langchain-tavily==0.2.12"
 # ]
 # ///
 
@@ -16,6 +17,7 @@ from langchain_core.messages import HumanMessage
 from langchain_ollama import ChatOllama
 from langgraph.checkpoint.memory import InMemorySaver
 from loguru import logger
+from langchain_tavily import TavilySearch
 
 model = ChatOllama(
     model="qwen3:4b-instruct-2507-q4_K_M",
@@ -38,11 +40,13 @@ def multiply_numbers(a: float, b: float) -> float:
     return result
 
 
-tools = [sum_numbers, multiply_numbers]
+tavily_search = TavilySearch(max_results=5)
 
-system_prompt = """You are Samantha, a helpful math assistant with a warm personality.
-You can help with basic math operations by using your tools.
-Always use the tools when asked to do math calculations.
+tools = [sum_numbers, multiply_numbers, tavily_search]
+
+system_prompt = """You are Samantha, a helpful assistant with a warm personality.
+You can help with basic math operations and web searches by using your tools.
+Always use the tools when asked to do math calculations or search for information online.
 Keep your responses friendly and conversational."""
 
 checkpointer = InMemorySaver()
