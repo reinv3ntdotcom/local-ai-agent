@@ -15,9 +15,9 @@ from langchain.agents import create_agent
 from langchain.tools import tool
 from langchain_core.messages import HumanMessage
 from langchain_ollama import ChatOllama
+from langchain_tavily import TavilySearch
 from langgraph.checkpoint.memory import InMemorySaver
 from loguru import logger
-from langchain_tavily import TavilySearch
 
 model = ChatOllama(
     model="qwen3:4b-instruct-2507-q4_K_M",
