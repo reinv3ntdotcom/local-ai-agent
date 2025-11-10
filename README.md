@@ -1,4 +1,6 @@
 # Local AI Agent
+https://www.youtube.com/watch?v=8HP_yVz7Gg8
+
 
 A simple starting point for building AI agents with Python, showcasing some really cool libraries and technologies:
 
